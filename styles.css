@@ -1,0 +1,293 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ddd;
+}
+
+.header {
+    background-color: #ff9800;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.header .logo {
+    width: 100px;
+    height: auto;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header-center {
+    text-align: center;
+    flex: 1;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.user-actions button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+}
+
+.user-actions button:hover {
+    background-color: #555;
+}
+
+.container {
+    padding: 20px;
+}
+
+.hero {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hero-text h2 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.hero-text p {
+    font-size: 1.2em;
+}
+
+.hero-text button {
+    padding: 10px 20px;
+    background-color: #ff9800;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.hero-text button:hover {
+    background-color: #e68900;
+}
+
+.general-info, .pools, .brackets, .matches-standings, .schedule, .team-info, .results, .forum, .contact, .coaches {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+th {
+    background-color: #ff9800;
+    color: white;
+}
+
+td {
+    text-align: center;
+}
+
+.team {
+    margin-bottom: 20px;
+}
+
+.post {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.courts {
+    margin-top: 20px;
+}
+
+.courts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.court {
+    width: 45%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.court img {
+    width: 100%;
+    height: auto;
+}
+
+.form-section {
+    margin-top: 40px;
+    text-align: left;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-section button {
+    padding: 10px 20px;
+    background-color: #ff9800;
+    border: none;
+    color: white;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.form-section button:hover {
+    background-color: #e68900;
+}
+
+.resources-intro {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.resources-intro h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.resources-intro p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.key-resources {
+    margin-top: 40px;
+}
+
+.key-resources h2 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.resources-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.resource {
+    width: 30%;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.resource h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.resource p {
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+.learn-more {
+    color: #ff9800;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.learn-more:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode .header,
+body.dark-mode .footer,
+body.dark-mode .hero-text button,
+body.dark-mode .user-actions button {
+    background-color: #1e1e1e;
+    color: #ddd;
+}
+
+body.dark-mode .form-group input, 
+body.dark-mode .form-group textarea {
+    background-color: #333;
+    color: #ddd;
+    border: 1px solid #555;
+}
+
+body.dark-mode .form-group label {
+    color: #ddd;
+}
+
+body.dark-mode th {
+    background-color: #333;
+}

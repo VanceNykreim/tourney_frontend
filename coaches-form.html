@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coaches Forum</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="images/new-volleyball-logo.jpg" alt="Tournament Logo" class="logo">
+            <div class="header-center">
+                <h1>Southern LA Volleyball Tournament</h1>
+                <div class="countdown" id="countdown">Starts in: 6 days 18 hrs 21 min 13 sec</div>
+            </div>
+            <div class="user-actions">
+                <button onclick="location.href='sign-in.html'">Sign In</button>
+                <button onclick="location.href='register.html'">Register</button>
+                <button id="toggle-dark-mode">Dark Mode</button>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        
+        <section class="form-section">
+            <h2>Submit Match Strategy</h2>
+            <form action="submit-coach-form" method="post">
+                <label for="coach-name">Coach Name:</label>
+                <input type="text" id="coach-name" name="coach-name" required>
+
+                <label for="team-name">Team Name:</label>
+                <input type="text" id="team-name" name="team-name" required>
+
+                <label for="strategy">Match Strategy:</label>
+                <textarea id="strategy" name="strategy" rows="4" required></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+        <section class="resources-intro">
+            <h2>You have the power to shape the future of a volleyball player.</h2>
+            <p>Every successful volleyball player has a coach or mentor who believed in them and provided unwavering support. Whether you’re a P.E. teacher, high school, club, or college volleyball coach, you are the backbone of your players’ development. We offer a wealth of resources to enhance your coaching techniques and improve your training sessions, including articles, videos, drills, and tools.</p>
+        </section>
+        <section class="key-resources">
+            <h2>Key Resources</h2>
+            <div class="resources-grid">
+                <div class="resource">
+                    <h3>Southern LA Volleyball Coach Academy</h3>
+                    <p>The Southern LA Volleyball Coach Academy is an online, interactive platform for volleyball coaches. It offers a curated content library with learning paths, courses, and modules based on the USA Volleyball Development Model. Access a comprehensive set of resources, including articles, videos, drills, and tools, to refine your coaching strategies and enhance your training sessions.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+                <div class="resource">
+                    <h3>Southern LA Volleyball Member Coach Requirements</h3>
+                    <p>The indoor IMPACT course is mandatory for all Southern LA Volleyball junior club coaches. It's the minimum education requirement to coach at this level. Additionally, coaches must complete SafeSport training before interacting with athletes.</p>
+                    <a href="#" class="learn-more">Learn More</a>
+                </div>
+                <div class="resource">
+                    <h3>Coach Tools</h3>
+                    <p>Seeking inspiration? Southern LA Volleyball offers a variety of drills, competition ideas, blogs, books, webinars, and more to support your coaching journey. Whether you're a rookie or a seasoned coach, these resources are designed to boost your coaching knowledge and set you up for success.</p>
+                    <a href="#" class="learn-more">Toolin' It</a>
+                </div>
+            </div>
+            <div class="resources-grid">
+                <div class="resource">
+                    <h3>Lesson Plans</h3>
+                    <p>Offering game-like, age-appropriate, and enjoyable lessons for young athletes is key to fostering their passion for the sport. Southern LA Volleyball provides comprehensive lesson plans tailored for all age groups, from elementary to high school.</p>
+                    <a href="#" class="learn-more">Lesson Plans</a>
+                </div>
+                <div class="resource">
+                    <h3>Coaches Challenge</h3>
+                    <p>Southern LA Volleyball is part of the Million Coaches Challenge with the US Olympic & Paralympic Committee. This initiative aims to train one million coaches in youth development by 2025. Members of the Southern LA Volleyball Coach Academy can access the "Connection Based Coaching" course for free.</p>
+                    <a href="#" class="learn-more">Take the Course</a>
+                </div>
+                <div class="resource">
+                    <h3>Developing the Game</h3>
+                    <p>Explore our "Growing the Game" blog for valuable insights on coaching and teaching techniques directly from our experienced team.</p>
+                    <a href="#" class="learn-more">Developing the Game</a>
+                </div>
+            </div>
+            <div class="resources-grid">
+                <div class="resource">
+                    <h3>Watch</h3>
+                    <p>Explore our video library for inspiring stories, tips, skill videos, and animated drills to enhance your coaching expertise.</p>
+                    <a href="#" class="learn-more">Watch</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 Southern LA Volleyball Association</p>
+    </footer>
+    <script src="scripts/script.js"></script>
+</body>
+</html>

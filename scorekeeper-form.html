@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scorekeeper Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="img/logo.jpg" alt="Tournament Logo" class="logo">
+            <div class="header-center">
+                <h1>Scorekeeper Form</h1>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <section class="form-section">
+            <h2>Submit Match Scores</h2>
+            <form action="submit-scorekeeper-form" method="post">
+                <div class="form-group">
+                    <label for="scorekeeper-name">Scorekeeper Name:</label>
+                    <input type="text" id="scorekeeper-name" name="scorekeeper-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="match-date">Match Date:</label>
+                    <input type="date" id="match-date" name="match-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="court-number">Court Number:</label>
+                    <input type="number" id="court-number" name="court-number" required>
+                </div>
+                <div class="form-group">
+                    <label for="team1-name">Team 1 Name:</label>
+                    <input type="text" id="team1-name" name="team1-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="team2-name">Team 2 Name:</label>
+                    <input type="text" id="team2-name" name="team2-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="team1-set1">Team 1 Set 1 Score:</label>
+                    <input type="number" id="team1-set1" name="team1-set1" required>
+                </div>
+                <div class="form-group">
+                    <label for="team2-set1">Team 2 Set 1 Score:</label>
+                    <input type="number" id="team2-set1" name="team2-set1" required>
+                </div>
+                <div class="form-group">
+                    <label for="team1-set2">Team 1 Set 2 Score:</label>
+                    <input type="number" id="team1-set2" name="team1-set2" required>
+                </div>
+                <div class="form-group">
+                    <label for="team2-set2">Team 2 Set 2 Score:</label>
+                    <input type="number" id="team2-set2" name="team2-set2" required>
+                </div>
+                <div class="form-group">
+                    <label for="team1-set3">Team 1 Set 3 Score (if applicable):</label>
+                    <input type="number" id="team1-set3" name="team1-set3">
+                </div>
+                <div class="form-group">
+                    <label for="team2-set3">Team 2 Set 3 Score (if applicable):</label>
+                    <input type="number" id="team2-set3" name="team2-set3">
+                </div>
+                <div class="form-group">
+                    <label for="comments">Comments:</label>
+                    <textarea id="comments" name="comments" rows="4"></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 Southern LA Volleyball Association</p>
+    </footer>
+</body>
+</html>
