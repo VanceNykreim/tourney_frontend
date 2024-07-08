@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scorekeeper Form</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="form.js"></script>
 </head>
 <body>
     <header class="header">
@@ -18,26 +19,30 @@
     <main class="container">
         <section class="form-section">
             <h2>Submit Match Scores</h2>
-            <form action="submit-scorekeeper-form" method="post">
+            <form id="scorekeeper-form">
                 <div class="form-group">
                     <label for="scorekeeper-name">Scorekeeper Name:</label>
                     <input type="text" id="scorekeeper-name" name="scorekeeper-name" required>
                 </div>
                 <div class="form-group">
                     <label for="match-date">Match Date:</label>
-                    <input type="date" id="match-date" name="match-date" required>
+                    <input type="datetime-local" id="match-date" name="match-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="tournament-id">Tournament ID:</label>
+                    <input type="number" id="tournament-id" name="tournament-id" required>
                 </div>
                 <div class="form-group">
                     <label for="court-number">Court Number:</label>
                     <input type="number" id="court-number" name="court-number" required>
                 </div>
                 <div class="form-group">
-                    <label for="team1-name">Team 1 Name:</label>
-                    <input type="text" id="team1-name" name="team1-name" required>
+                    <label for="team1-id">Team 1 ID:</label>
+                    <input type="number" id="team1-id" name="team1-id" required>
                 </div>
                 <div class="form-group">
-                    <label for="team2-name">Team 2 Name:</label>
-                    <input type="text" id="team2-name" name="team2-name" required>
+                    <label for="team2-id">Team 2 ID:</label>
+                    <input type="number" id="team2-id" name="team2-id" required>
                 </div>
                 <div class="form-group">
                     <label for="team1-set1">Team 1 Set 1 Score:</label>
@@ -67,7 +72,7 @@
                     <label for="comments">Comments:</label>
                     <textarea id="comments" name="comments" rows="4"></textarea>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="button" onclick="submitForm()">Submit</button>
             </form>
         </section>
     </main>
