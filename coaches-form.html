@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coaches Forum</title>
     <link rel="stylesheet" href="styles.css">
-
+    <style>
+        .player-entry {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -23,18 +29,65 @@
         </div>
     </header>
     <main class="container">
-        
         <section class="form-section">
-            <h2>Submit Match Strategy</h2>
-            <form action="submit-coach-form" method="post">
+            <h2>Submit Team Information</h2>
+            <form id="coach-form">
                 <label for="coach-name">Coach Name:</label>
                 <input type="text" id="coach-name" name="coach-name" required>
 
-                <label for="team-name">Team Name:</label>
+                <label for="team-name">Team Name (School Name):</label>
                 <input type="text" id="team-name" name="team-name" required>
 
-                <label for="strategy">Match Strategy:</label>
-                <textarea id="strategy" name="strategy" rows="4" required></textarea>
+                <label for="contact-info">Coach's Contact Info (Phone Number):</label>
+                <input type="tel" id="contact-info" name="contact-info" required>
+
+                <label>Players:</label>
+                <div id="players-list">
+                    <!-- 10 default player slots -->
+                    <div class="player-entry">
+                        <input type="number" name="jersey-number-1" placeholder="Jersey Number" required>
+                        <input type="text" name="player-name-1" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                    </div>
+                    <div class="player-entry">
+                        <input type="number" name="jersey-number-2" placeholder="Jersey Number" required>
+                        <input type="text" name="player-name-2" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                    </div>
+                    <div class="player-entry">
+                        <input type="number" name="jersey-number-3" placeholder="Jersey Number" required>
+                        <input type="text" name="player-name-3" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                    </div>
+                    <div class="player-entry">
+                        <input type="number" name="jersey-number-4" placeholder="Jersey Number" required>
+                        <input type="text" name="player-name-4" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                    </div>
+                    <div class="player-entry">
+                        <input type="number" name="jersey-number-5" placeholder="Jersey Number" required>
+                        <input type="text" name="player-name-5" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                    </div>
+                    <div class="player-entry">
+                        <input type="number" name="jersey-number-6" placeholder="Jersey Number" required>
+                        <input type="text" name="player-name-6" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                    </div>
+                    <div class="player-entry">
+                        <input type="number" name="jersey-number-7" placeholder="Jersey Number" required>
+                        <input type="text" name="player-name-7" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                    </div>
+                    <div class="player-entry">
+                        <input type="number" name="jersey-number-8" placeholder="Jersey Number" required>
+                        <input type="text" name="player-name-8" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                    </div>
+                    <div class="player-entry">
+                        <input type="number" name="jersey-number-9" placeholder="Jersey Number" required>
+                        <input type="text" name="player-name-9" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                    </div>
+                    <div class="player-entry">
+                        <input type="number" name="jersey-number-10" placeholder="Jersey Number" required>
+                        <input type="text" name="player-name-10" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                    </div>
+                </div>
+                
+
+                <button type="button" id="add-player">Add Player</button>
 
                 <button type="submit">Submit</button>
             </form>
@@ -94,3 +147,4 @@
     <script src="scripts/script.js"></script>
 </body>
 </html>
+
