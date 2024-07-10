@@ -123,7 +123,7 @@ async function fetchTeamData() {
         //     "teams": [
         //         {
         //             "teamName": "Team A",
-        //             "coach": "Coach A",
+        //             "coachName": "Coach A",
         //             "players": [
         //                 {"jerseyNumber": 1, "name": "Player A1"},
         //                 {"jerseyNumber": 2, "name": "Player A2"},
@@ -151,10 +151,10 @@ function updateTeamTables(teams) {
         teamTable.className = 'team-table';
 
         const teamName = document.createElement('h3');
-        teamName.textContent = team.teamName;
+        teamName.textContent = team.name;
 
         const coachName = document.createElement('p');
-        coachName.textContent = `Coach: ${team.coach}`;
+        coachName.textContent = `Coach: ${team.coach_name}`;
 
         const table = document.createElement('table');
 
@@ -172,7 +172,7 @@ function updateTeamTables(teams) {
         team.players.forEach(player => {
             const row = document.createElement('tr');
             const td1 = document.createElement('td');
-            td1.textContent = player.jerseyNumber;
+            td1.textContent = player.jersey_number;
             const td2 = document.createElement('td');
             td2.textContent = player.name;
             row.appendChild(td1);
