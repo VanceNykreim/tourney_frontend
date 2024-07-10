@@ -24,34 +24,56 @@ toggleDarkMode.addEventListener('click', () => {
 });
 
 document.getElementById('add-player').addEventListener('click', function() {
-    const playerCount = document.querySelectorAll('.player-entry').length + 1;
-    const playerEntry = document.createElement('div');
-    playerEntry.classList.add('player-entry');
-    playerEntry.innerHTML = `
-        <input type="number" name="jersey-number-${playerCount}" placeholder="Jersey Number" required>
-        <input type="text" name="player-name-${playerCount}" placeholder="Player Name" pattern="\\w+ \\w+" title="Please enter first and last name" required>
-    `;
-    document.getElementById('players-list').appendChild(playerEntry);
+    const playerCount = document.querySelectorAll('.player-entry').length;
+    if (playerCount < 30) { // Limit to 30 players
+        const playerEntry = document.createElement('div');
+        playerEntry.classList.add('player-entry');
+        playerEntry.innerHTML = `
+            <input type="number" name="jersey-number-${playerCount + 1}" placeholder="Jersey Number">
+            <input type="text" name="player-name-${playerCount + 1}" placeholder="Player Name" pattern="\\w+ \\w+" title="Please enter first and last name">
+        `;
+        document.getElementById('players-list').appendChild(playerEntry);
+    } else {
+        alert('Maximum number of players reached.');
+    }
+});
+
+document.getElementById('remove-player').addEventListener('click', function() {
+    const playerCount = document.querySelectorAll('.player-entry').length;
+    if (playerCount > 6) { // Minimum of 6 players required
+        document.getElementById('players-list').lastElementChild.remove();
+    } else {
+        alert('You must have at least 6 players.');
+    }
 });
 
 document.getElementById('coach-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const coachName = document.getElementById('coach-name').value;
-    const teamName = document.getElementById('team-name').value;
-    const contactInfo = document.getElementById('contact-info').value;
-
     const players = [];
+    let valid = true;
+
     document.querySelectorAll('.player-entry').forEach(entry => {
         const jerseyNumber = entry.querySelector('input[name^="jersey-number"]').value;
         const playerName = entry.querySelector('input[name^="player-name"]').value;
         const [firstName, lastName] = playerName.split(' ');
+
         if (!firstName || !lastName) {
-            alert('Please enter both first and last name for each player.');
-            return;
+            valid = false;
+            entry.querySelector('input[name^="player-name"]').setCustomValidity("Please enter both first and last name");
+        } else {
+            entry.querySelector('input[name^="player-name"]').setCustomValidity("");
+            players.push({ jerseyNumber, firstName, lastName });
         }
-        players.push({ jerseyNumber, firstName, lastName });
     });
+
+    if (!valid) {
+        event.preventDefault();
+        document.getElementById('coach-form').reportValidity();
+        return;
+    }
+
+    const coachName = document.getElementById('coach-name').value;
+    const teamName = document.getElementById('team-name').value;
+    const contactInfo = document.getElementById('contact-info').value;
 
     const data = {
         coachName,
@@ -75,4 +97,6 @@ document.getElementById('coach-form').addEventListener('submit', function(event)
         console.error('Error:', error);
         alert('An error occurred while submitting the information.');
     });
+
+    event.preventDefault();
 });

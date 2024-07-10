@@ -35,13 +35,12 @@
                 <label for="coach-name">Coach Name:</label>
                 <input type="text" id="coach-name" name="coach-name" required>
 
-                <label for="team-name">Team Name (School Name):</label>
+                <label for="team-name">Team Name:</label>
                 <input type="text" id="team-name" name="team-name" required>
 
-                <label for="contact-info">Coach's Contact Info (Phone Number):</label>
-                <input type="tel" id="contact-info" name="contact-info" required>
+                <label for="contact-info">Contact Info:</label>
+                <input type="text" id="contact-info" name="contact-info" required>
 
-                <label>Players:</label>
                 <div id="players-list">
                     <!-- 10 default player slots -->
                     <div class="player-entry">
@@ -69,26 +68,24 @@
                         <input type="text" name="player-name-6" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
                     </div>
                     <div class="player-entry">
-                        <input type="number" name="jersey-number-7" placeholder="Jersey Number" required>
-                        <input type="text" name="player-name-7" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                        <input type="number" name="jersey-number-7" placeholder="Jersey Number">
+                        <input type="text" name="player-name-7" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name">
                     </div>
                     <div class="player-entry">
-                        <input type="number" name="jersey-number-8" placeholder="Jersey Number" required>
-                        <input type="text" name="player-name-8" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                        <input type="number" name="jersey-number-8" placeholder="Jersey Number">
+                        <input type="text" name="player-name-8" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name">
                     </div>
                     <div class="player-entry">
-                        <input type="number" name="jersey-number-9" placeholder="Jersey Number" required>
-                        <input type="text" name="player-name-9" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                        <input type="number" name="jersey-number-9" placeholder="Jersey Number">
+                        <input type="text" name="player-name-9" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name">
                     </div>
                     <div class="player-entry">
-                        <input type="number" name="jersey-number-10" placeholder="Jersey Number" required>
-                        <input type="text" name="player-name-10" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name" required>
+                        <input type="number" name="jersey-number-10" placeholder="Jersey Number">
+                        <input type="text" name="player-name-10" placeholder="Player Name" pattern="\w+ \w+" title="Please enter first and last name">
                     </div>
                 </div>
-                
-
                 <button type="button" id="add-player">Add Player</button>
-
+                <button type="button" id="remove-player">Remove Player</button>
                 <button type="submit">Submit</button>
             </form>
         </section>
