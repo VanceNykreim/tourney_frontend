@@ -82,7 +82,7 @@ document.getElementById('coach-form').addEventListener('submit', function(event)
         contactInfo
     };
 
-    fetch('https://your-api-gateway-endpoint.amazonaws.com/your-lambda-function', {
+    fetch('https://yutztibim3.execute-api.us-east-1.amazonaws.com/dev/coach-form', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
