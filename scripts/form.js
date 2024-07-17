@@ -1,3 +1,36 @@
+document.addEventListener('DOMContentLoaded', async () => {
+    const tournamentIdInput = document.getElementById('tournament-id');
+    tournamentIdInput.addEventListener('change', fetchTeams);
+});
+
+async function fetchTeams() {
+    const tournamentId = document.getElementById('tournament-id').value;
+    const team1Select = document.getElementById('team1-id');
+    const team2Select = document.getElementById('team2-id');
+
+    if (tournamentId) {
+        const response = await fetch(`https://yutztibim3.execute-api.us-east-1.amazonaws.com/dev/get-teams?tournamentId=${tournamentId}`);
+        if (response.ok) {
+            const teams = await response.json();
+            team1Select.innerHTML = '';
+            team2Select.innerHTML = '';
+            teams.forEach(team => {
+                const option1 = document.createElement('option');
+                option1.value = team.id;
+                option1.textContent = team.name;
+                team1Select.appendChild(option1);
+
+                const option2 = document.createElement('option');
+                option2.value = team.id;
+                option2.textContent = team.name;
+                team2Select.appendChild(option2);
+            });
+        } else {
+            alert('Failed to fetch teams.');
+        }
+    }
+}
+
 async function submitForm() {
     const form = document.getElementById('scorekeeper-form');
     const formData = new FormData(form);
