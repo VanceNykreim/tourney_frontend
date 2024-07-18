@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scorekeeper Form</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="scripts/form.js"></script>
+    <script src="scripts/form.js" defer></script>
 </head>
 <body>
     <header class="header">
@@ -13,6 +13,11 @@
             <img src="images/new-volleyball-logo.jpg" alt="Tournament Logo" class="logo">
             <div class="header-center">
                 <h1>Scorekeeper Form</h1>
+            </div>
+            <div class="user-actions">
+                <button onclick="location.href='coaches-form.html'">Coaches Forum</button>
+                <button onclick="location.href='scorekeeper-form.html'">Scorekeeper Form</button>
+                <button id="toggle-dark-mode">Dark Mode</button>
             </div>
         </div>
     </header>
@@ -37,12 +42,12 @@
                     <input type="number" id="court-number" name="court-number" required>
                 </div>
                 <div class="form-group">
-                    <label for="team1-id">Team 1 ID:</label>
-                    <input type="number" id="team1-id" name="team1-id" required>
+                    <label for="team1-id">Team 1:</label>
+                    <select id="team1-id" name="team1-id" required></select>
                 </div>
                 <div class="form-group">
-                    <label for="team2-id">Team 2 ID:</label>
-                    <input type="number" id="team2-id" name="team2-id" required>
+                    <label for="team2-id">Team 2:</label>
+                    <select id="team2-id" name="team2-id" required></select>
                 </div>
                 <div class="form-group">
                     <label for="team1-set1">Team 1 Set 1 Score:</label>
