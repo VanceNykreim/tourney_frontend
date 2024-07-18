@@ -31,6 +31,18 @@
                 <button onclick="location.href='scorekeeper-form.html'">Scorekeeper Form</button>
             </div>
         </section>
+
+        <!-- Dropdown Menu Section -->
+        <section class="dropdown-container">
+            <label for="teamSelect">Select Team:</label>
+            <select id="teamSelect" onchange="filterMatches()">
+                <option value="">--Select a Team--</option>
+                <option value="team1">Team 1</option>
+                <option value="team2">Team 2</option>
+                <!-- Add more options as needed -->
+            </select>
+        </section>
+
         <section class="teams">
             <h2>Teams and Players</h2>
             <div class="team-tables">
@@ -73,5 +85,6 @@
         <p>&copy; 2024 Southern LA Volleyball Association</p>
     </footer>
     <script src="scripts/index-script.js"></script>
+    <script src="teamMatchupsDropMenu.js"></script>
 </body>
 </html>
