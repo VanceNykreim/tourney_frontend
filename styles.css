@@ -99,6 +99,21 @@ body.dark-mode {
     background-color: #e68900;
 }
 
+.dropdown-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.dropdown-container label {
+    font-size: 1.2em;
+    margin-right: 10px;
+}
+
+.dropdown-container select {
+    padding: 5px;
+    font-size: 1em;
+}
+
 .general-info, .pools, .brackets, .matches-standings, .schedule, .team-info, .results, .forum, .contact, .coaches {
     margin-top: 20px;
 }

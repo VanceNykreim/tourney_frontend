@@ -1,43 +1,67 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-    // Dummy data for teams and matches
-    const teams = [
-        { id: 1, name: 'Team A' },
-        { id: 2, name: 'Team B' },
-        { id: 3, name: 'Team C' },
-    ];
+// teamMatchupsDropMenu.js
 
-    const matches = [
-        { id: 1, team1: 1, team2: 2, team1Name: 'Team A', team2Name: 'Team B', date: '2024-07-20' },
-        { id: 2, team1: 2, team2: 3, team1Name: 'Team B', team2Name: 'Team C', date: '2024-07-21' },
-        { id: 3, team1: 1, team2: 3, team1Name: 'Team A', team2Name: 'Team C', date: '2024-07-22' },
-    ];
+async function fetchTableData() {
+    const response = await fetch('https://yutztibim3.execute-api.us-east-1.amazonaws.com/dev/table-build');
+    if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+    }
+    return await response.json();
+}
 
-    const teamSelect = document.getElementById('teamSelect');
-    const matchTableBody = document.querySelector('#matchTable tbody');
-//yup
-    // Populate the dropdown with teams
-    teams.forEach(team => {
-        const option = document.createElement('option');
-        option.value = team.id;
-        option.textContent = team.name;
-        teamSelect.appendChild(option);
-    });
+async function populateTeamSelect() {
+    try {
+        const data = await fetchTableData();
+        const teamSelect = document.getElementById('teamSelect');
+        const teams = new Set();
 
-    // Function to filter matches based on selected team
-    window.filterMatches = function () {
-        const selectedTeam = parseInt(teamSelect.value);
-        matchTableBody.innerHTML = '';
+        data.forEach(match => {
+            teams.add(match.team1);
+            teams.add(match.team2);
+        });
 
-        const filteredMatches = matches.filter(match => match.team1 === selectedTeam || match.team2 === selectedTeam);
+        teams.forEach(team => {
+            const option = document.createElement('option');
+            option.value = team;
+            option.textContent = team;
+            teamSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error fetching table data:', error);
+    }
+}
+
+async function filterMatches() {
+    const selectedTeam = document.getElementById('teamSelect').value;
+    const tableBody = document.getElementById('matchTable').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = ''; // Clear the table
+
+    if (selectedTeam === '') {
+        return;
+    }
+
+    try {
+        const data = await fetchTableData();
+        const filteredMatches = data.filter(match => match.team1 === selectedTeam || match.team2 === selectedTeam);
 
         filteredMatches.forEach(match => {
             const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${match.team1Name}</td>
-                <td>${match.team2Name}</td>
-                <td>${new Date(match.date).toLocaleDateString()}</td>
-            `;
-            matchTableBody.appendChild(row);
+            const team1Cell = document.createElement('td');
+            const team2Cell = document.createElement('td');
+            const matchDateCell = document.createElement('td');
+
+            team1Cell.textContent = match.team1;
+            team2Cell.textContent = match.team2;
+            matchDateCell.textContent = match.date;
+
+            row.appendChild(team1Cell);
+            row.appendChild(team2Cell);
+            row.appendChild(matchDateCell);
+            tableBody.appendChild(row);
         });
-    };
-});
+    } catch (error) {
+        console.error('Error filtering matches:', error);
+    }
+}
+
+// Initialize dropdown and table on page load
+document.addEventListener('DOMContentLoaded', populateTeamSelect);
