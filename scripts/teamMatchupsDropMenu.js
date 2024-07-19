@@ -14,9 +14,8 @@ async function populateTeamSelect() {
         const teamSelect = document.getElementById('teamSelect');
         const teams = new Set();
 
-        data.forEach(match => {
-            teams.add(match.team1);
-            teams.add(match.team2);
+        data.teams.forEach(team => {
+            teams.add(team.name);
         });
 
         teams.forEach(team => {
@@ -30,6 +29,20 @@ async function populateTeamSelect() {
     }
 }
 
+function getMatchNumber(seed) {
+    const matchNumbers = {
+        1: 1, 16: 1,
+        2: 8, 15: 8,
+        3: 3, 14: 3,
+        4: 10, 13: 10,
+        5: 2, 12: 2,
+        6: 9, 11: 9,
+        7: 4, 10: 4,
+        8: 11, 9: 11
+    };
+    return matchNumbers[seed] || null;
+}
+
 async function filterMatches() {
     const selectedTeam = document.getElementById('teamSelect').value;
     const tableBody = document.getElementById('matchTable').getElementsByTagName('tbody')[0];
@@ -41,7 +54,17 @@ async function filterMatches() {
 
     try {
         const data = await fetchTableData();
-        const filteredMatches = data.filter(match => match.team1 === selectedTeam || match.team2 === selectedTeam);
+        const teamData = data.teams.find(team => team.name === selectedTeam);
+        if (!teamData) {
+            throw new Error('Selected team not found');
+        }
+
+        const matchNumber = getMatchNumber(teamData.seed_number);
+        const filteredMatches = data.matchups.filter(match => match.match_id === matchNumber);
+
+        if (filteredMatches.length === 0) {
+            throw new Error('No matches found for the selected team');
+        }
 
         filteredMatches.forEach(match => {
             const row = document.createElement('tr');
@@ -49,9 +72,12 @@ async function filterMatches() {
             const team2Cell = document.createElement('td');
             const matchDateCell = document.createElement('td');
 
-            team1Cell.textContent = match.team1;
-            team2Cell.textContent = match.team2;
-            matchDateCell.textContent = match.date;
+            const team1 = data.teams.find(team => team.team_id === match.team1_id);
+            const team2 = data.teams.find(team => team.team_id === match.team2_id);
+
+            team1Cell.textContent = team1.name;
+            team2Cell.textContent = team2.name;
+            matchDateCell.textContent = match.match_date;
 
             row.appendChild(team1Cell);
             row.appendChild(team2Cell);

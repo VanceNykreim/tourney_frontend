@@ -41,12 +41,22 @@
             <label for="teamSelect">Select Team:</label>
             <select id="teamSelect" onchange="filterMatches()">
                 <option value="">--Select a Team--</option>
-                <option value="team1">Team 1</option>
-                <option value="team2">Team 2</option>
-                <!-- Add more options as needed -->
             </select>
         </section>
 
+        <table id="matchTable">
+            <thead>
+                <tr>
+                    <th>Team 1</th>
+                    <th>Team 2</th>
+                    <th>Match Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Match rows will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+        
         <section class="teams">
             <h2>Teams and Players</h2>
             <div class="team-tables">
