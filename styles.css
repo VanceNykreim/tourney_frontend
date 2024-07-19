@@ -58,6 +58,7 @@ body.dark-mode {
 
 .container {
     padding: 20px;
+    padding-bottom: 60px; /* Added padding to prevent overlap */
 }
 
 .hero {
