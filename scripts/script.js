@@ -100,4 +100,3 @@ document.getElementById('coach-form').addEventListener('submit', function(event)
 
     event.preventDefault();
 });
-scripts/script.js
