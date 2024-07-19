@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://cdn.auth0.com/js/auth0/9.19/auth0.min.js"></script>
-  <script>
-    var webAuth = new auth0.WebAuth({
-      domain: 'tournament-volleyball-byui-team1.us.auth0.com',
-      clientID: 'GNnS4UxzQOzUvM6HVBuXxXuySZVd34ej',
-      redirectUri: 'http://tournamentpageteam1bestteam.s3-website-us-east-1.amazonaws.com/callback',
-      responseType: 'token id_token',
-      scope: 'openid profile email'
-    });
+    <script src="https://cdn.auth0.com/js/auth0/9.19/auth0.min.js"></script>
+    <script>
+        var webAuth = new auth0.WebAuth({
+            domain: 'tournament-volleyball-byui-team1.us.auth0.com',
+            clientID: 'GNnS4UxzQOzUvM6HVBuXxXuySZVd34ej',
+            redirectUri: 'http://tournamentpageteam1bestteam.s3-website-us-east-1.amazonaws.com/callback',
+            responseType: 'token id_token',
+            scope: 'openid profile email'
+        });
 
-    webAuth.parseHash(function(err, authResult) {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = '';
-        localStorage.setItem('accessToken', authResult.accessToken);
-        localStorage.setItem('idToken', authResult.idToken);
-        window.location.href = '/';
-      } else if (err) {
-        console.log(err);
-      }
-    });
-  </script>
+        webAuth.parseHash(function(err, authResult) {
+            if (authResult && authResult.accessToken && authResult.idToken) {
+                window.location.hash = '';
+                localStorage.setItem('accessToken', authResult.accessToken);
+                localStorage.setItem('idToken', authResult.idToken);
+                window.location.href = '/';
+            } else if (err) {
+                console.log(err);
+            }
+        });
+    </script>
 </head>
 <body>
-  <h1>Loading...</h1>
+    <h1>Loading...</h1>
 </body>
 </html>

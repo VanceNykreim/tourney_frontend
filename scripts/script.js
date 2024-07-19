@@ -105,14 +105,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     var webAuth = new auth0.WebAuth({
-      domain: 'tournament-volleyball-byui-team1.us.auth0.com',
-      clientID: 'GNnS4UxzQOzUvM6HVBuXxXuySZVd34ej',
-      redirectUri: 'http://tournamentpageteam1bestteam.s3-website-us-east-1.amazonaws.com/callback',
-      responseType: 'token id_token',
-      scope: 'openid profile email'
-      });
-      
-      function login() {
+        domain: 'tournament-volleyball-byui-team1.us.auth0.com',
+        clientID: 'GNnS4UxzQOzUvM6HVBuXxXuySZVd34ej',
+        redirectUri: 'http://tournamentpageteam1bestteam.s3-website-us-east-1.amazonaws.com/callback',
+        responseType: 'token id_token',
+        scope: 'openid profile email'
+    });
+    
+    function login() {
         webAuth.authorize();
-      }
+    }
+    
+    function isAuthenticated() {
+        var idToken = localStorage.getItem('idToken');
+        return idToken ? true : false;
+    }
+    
+    function authenticateAndRedirect(page) {
+        if (isAuthenticated()) {
+            window.location.href = page;
+        } else {
+            login();
+        }
+    }
+    
 });
