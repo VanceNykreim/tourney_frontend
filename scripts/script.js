@@ -1,3 +1,5 @@
+// scripts/script.js
+
 function updateCountdown() {
     const now = new Date().getTime();
     const eventDate = new Date("2024-07-04T00:00:00").getTime();
@@ -17,86 +19,88 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 
-const toggleDarkMode = document.getElementById('toggle-dark-mode');
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleDarkMode = document.getElementById('toggle-dark-mode');
 
-toggleDarkMode.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-});
+    toggleDarkMode.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+    });
 
-document.getElementById('add-player').addEventListener('click', function() {
-    const playerCount = document.querySelectorAll('.player-entry').length;
-    if (playerCount < 30) { // Limit to 30 players
-        const playerEntry = document.createElement('div');
-        playerEntry.classList.add('player-entry');
-        playerEntry.innerHTML = `
-            <input type="number" name="jersey-number-${playerCount + 1}" placeholder="Jersey Number">
-            <input type="text" name="player-name-${playerCount + 1}" placeholder="Player Name" pattern="\\w+ \\w+" title="Please enter first and last name">
-        `;
-        document.getElementById('players-list').appendChild(playerEntry);
-    } else {
-        alert('Maximum number of players reached.');
-    }
-});
-
-document.getElementById('remove-player').addEventListener('click', function() {
-    const playerCount = document.querySelectorAll('.player-entry').length;
-    if (playerCount > 6) { // Minimum of 6 players required
-        document.getElementById('players-list').lastElementChild.remove();
-    } else {
-        alert('You must have at least 6 players.');
-    }
-});
-
-document.getElementById('coach-form').addEventListener('submit', function(event) {
-    const players = [];
-    let valid = true;
-
-    document.querySelectorAll('.player-entry').forEach(entry => {
-        const jerseyNumber = entry.querySelector('input[name^="jersey-number"]').value;
-        const playerName = entry.querySelector('input[name^="player-name"]').value;
-        const [firstName, lastName] = playerName.split(' ');
-
-        if (!firstName || !lastName) {
-            valid = false;
-            entry.querySelector('input[name^="player-name"]').setCustomValidity("Please enter both first and last name");
+    document.getElementById('add-player').addEventListener('click', function() {
+        const playerCount = document.querySelectorAll('.player-entry').length;
+        if (playerCount < 30) { // Limit to 30 players
+            const playerEntry = document.createElement('div');
+            playerEntry.classList.add('player-entry');
+            playerEntry.innerHTML = `
+                <input type="number" name="jersey-number-${playerCount + 1}" placeholder="Jersey Number">
+                <input type="text" name="player-name-${playerCount + 1}" placeholder="Player Name" pattern="\\w+ \\w+" title="Please enter first and last name">
+            `;
+            document.getElementById('players-list').appendChild(playerEntry);
         } else {
-            entry.querySelector('input[name^="player-name"]').setCustomValidity("");
-            players.push({ jerseyNumber, firstName, lastName });
+            alert('Maximum number of players reached.');
         }
     });
 
-    if (!valid) {
-        event.preventDefault();
-        document.getElementById('coach-form').reportValidity();
-        return;
-    }
-
-    const coachName = document.getElementById('coach-name').value;
-    const teamName = document.getElementById('team-name').value;
-    const contactInfo = document.getElementById('contact-info').value;
-
-    const data = {
-        coachName,
-        teamName,
-        players,
-        contactInfo
-    };
-
-    fetch('https://yutztibim3.execute-api.us-east-1.amazonaws.com/dev/coach-form', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert('Team information submitted successfully!');
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        alert('An error occurred while submitting the information.');
+    document.getElementById('remove-player').addEventListener('click', function() {
+        const playerCount = document.querySelectorAll('.player-entry').length;
+        if (playerCount > 6) { // Minimum of 6 players required
+            document.getElementById('players-list').lastElementChild.remove();
+        } else {
+            alert('You must have at least 6 players.');
+        }
     });
 
-    event.preventDefault();
+    document.getElementById('coach-form').addEventListener('submit', function(event) {
+        const players = [];
+        let valid = true;
+
+        document.querySelectorAll('.player-entry').forEach(entry => {
+            const jerseyNumber = entry.querySelector('input[name^="jersey-number"]').value;
+            const playerName = entry.querySelector('input[name^="player-name"]').value;
+            const [firstName, lastName] = playerName.split(' ');
+
+            if (!firstName || !lastName) {
+                valid = false;
+                entry.querySelector('input[name^="player-name"]').setCustomValidity("Please enter both first and last name");
+            } else {
+                entry.querySelector('input[name^="player-name"]').setCustomValidity("");
+                players.push({ jerseyNumber, firstName, lastName });
+            }
+        });
+
+        if (!valid) {
+            event.preventDefault();
+            document.getElementById('coach-form').reportValidity();
+            return;
+        }
+
+        const coachName = document.getElementById('coach-name').value;
+        const teamName = document.getElementById('team-name').value;
+        const contactInfo = document.getElementById('contact-info').value;
+
+        const data = {
+            coachName,
+            teamName,
+            players,
+            contactInfo
+        };
+
+        fetch('https://yutztibim3.execute-api.us-east-1.amazonaws.com/dev/coach-form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Team information submitted successfully!');
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('An error occurred while submitting the information.');
+        });
+
+        event.preventDefault();
+    });
 });
