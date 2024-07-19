@@ -103,50 +103,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
         event.preventDefault();
     });
-
-    var webAuth = new auth0.WebAuth({
-        domain: 'tournament-volleyball-byui-team1.us.auth0.com',
-        clientID: 'GNnS4UxzQOzUvM6HVBuXxXuySZVd34ej',
-        redirectUri: 'http://tournamentpageteam1bestteam.s3-website-us-east-1.amazonaws.com/callback',
-        responseType: 'token id_token',
-        scope: 'openid profile email'
-      });
-      
-      function login() {
-        webAuth.authorize();
-      }
-      
-      function authenticateAndRedirect(url) {
-        if (isAuthenticated()) {
-          window.location.href = url;
-        } else {
-          login();
-        }
-      }
-      
-      function isAuthenticated() {
-        var idToken = localStorage.getItem('idToken');
-        return idToken ? true : false;
-      }
-      
-      window.onload = function() {
-        if (window.location.pathname === '/callback') {
-          handleAuthCallback();
-        }
-      };
-      
-      function handleAuthCallback() {
-        webAuth.parseHash(function(err, authResult) {
-          if (authResult && authResult.accessToken && authResult.idToken) {
-            window.location.hash = '';
-            localStorage.setItem('accessToken', authResult.accessToken);
-            localStorage.setItem('idToken', authResult.idToken);
-            window.location.href = '/';
-          } else if (err) {
-            console.log(err);
-          }
-        });
-      }
-      
-    
 });
+
+var webAuth = new auth0.WebAuth({
+    domain: 'tournament-volleyball-byui-team1.us.auth0.com',
+    clientID: 'GNnS4UxzQOzUvM6HVBuXxXuySZVd34ej',
+    redirectUri: 'http://tournamentpageteam1bestteam.s3-website-us-east-1.amazonaws.com/callback',
+    responseType: 'token id_token',
+    scope: 'openid profile email'
+  });
+  
+  function login() {
+    webAuth.authorize();
+  }
+  
+  function authenticateAndRedirect(url) {
+    if (isAuthenticated()) {
+      window.location.href = url;
+    } else {
+      login();
+    }
+  }
+  
+  function isAuthenticated() {
+    var idToken = localStorage.getItem('idToken');
+    return idToken ? true : false;
+  }
+  
+  window.onload = function() {
+    if (window.location.pathname === '/callback') {
+      handleAuthCallback();
+    }
+  };
+  
+  function handleAuthCallback() {
+    webAuth.parseHash(function(err, authResult) {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        window.location.hash = '';
+        localStorage.setItem('accessToken', authResult.accessToken);
+        localStorage.setItem('idToken', authResult.idToken);
+        window.location.href = '/';
+      } else if (err) {
+        console.log(err);
+      }
+    });
+  }
