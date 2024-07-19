@@ -23,8 +23,8 @@
             </div>
             <div class="user-actions">
                 <button onclick="login()">Sign In</button>
-                <button onclick="location.href='coaches-form.html'">Coaches Forum</button>
-                <button onclick="location.href='scorekeeper-form.html'">Scorekeeper Form</button>
+                <button onclick="authenticateAndRedirect('scorekeeper-form.html')">Scorekeeper Form</button>
+                <button onclick="authenticateAndRedirect('coaches-form.html')">Coaches Form</button>
                 <button onclick="location.href='register.html'">Register</button>
                 <button id="toggle-dark-mode">Dark Mode</button>
             </div>
@@ -97,10 +97,6 @@
             <p>Email: support@slavolleyball.org</p>
             <p>Phone: (123) 456-7890</p>
         </section>
-        <div class="forms-section">
-            <button onclick="authenticateAndRedirect('scorekeeper-form.html')">Scorekeeper Form</button>
-            <button onclick="authenticateAndRedirect('coaches-form.html')">Coaches Form</button>
-        </div>
     </main>
     <footer class="footer">
         <p>&copy; 2024 Southern LA Volleyball Association</p>
