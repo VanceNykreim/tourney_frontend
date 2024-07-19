@@ -74,9 +74,3 @@ function updateTeamTables(teams) {
 
 // Call the function to fetch and display team data when the page loads
 fetchTeamData();
-
-// Optional: Add event listener for the dark mode toggle
-document.getElementById('toggle-dark-mode').addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-});
-
