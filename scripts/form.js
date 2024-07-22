@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     tournamentIdInput.addEventListener('change', fetchTeams);
 });
 
+let teamNames = {}; // Object to store team names by their IDs
+
 async function fetchTeams() {
     const tournamentId = document.getElementById('tournament-id').value;
     const team1Select = document.getElementById('team1-id');
@@ -12,9 +14,11 @@ async function fetchTeams() {
         const response = await fetch(`https://yutztibim3.execute-api.us-east-1.amazonaws.com/dev/get-teams?tournamentId=${tournamentId}`);
         if (response.ok) {
             const teams = await response.json();
+            teamNames = {}; // Clear previous team names
             team1Select.innerHTML = '';
             team2Select.innerHTML = '';
             teams.forEach(team => {
+                teamNames[team.id] = team.name; // Store team name by ID
                 const option = document.createElement('option');
                 option.value = team.id;
                 option.textContent = team.name;
@@ -31,16 +35,19 @@ async function submitForm() {
     const form = document.getElementById('scorekeeper-form');
     const formData = new FormData(form);
 
+    const team1Id = formData.get('team1-id');
+    const team2Id = formData.get('team2-id');
+
     const data = {
         scorekeeperName: formData.get('scorekeeper-name'),
         matchDate: formData.get('match-date'),
         tournamentId: formData.get('tournament-id'),
         courtNumber: formData.get('court-number'),
-        team1Id: formData.get('team1-id'),
-        team2Id: formData.get('team2-id'),
+        team1Id: team1Id,
+        team2Id: team2Id,
         scores: [
-            { team: formData.get('team1-id'), set1: formData.get('team1-set1'), set2: formData.get('team1-set2'), set3: formData.get('team1-set3') || null },
-            { team: formData.get('team2-id'), set1: formData.get('team2-set1'), set2: formData.get('team2-set2'), set3: formData.get('team2-set3') || null },
+            { team: teamNames[team1Id], set1: formData.get('team1-set1'), set2: formData.get('team1-set2'), set3: formData.get('team1-set3') || null },
+            { team: teamNames[team2Id], set1: formData.get('team2-set1'), set2: formData.get('team2-set2'), set3: formData.get('team2-set3') || null },
         ],
         comments: formData.get('comments'),
     };
