@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 var webAuth = new auth0.WebAuth({
     domain: 'tournament-volleyball-byui-team1.us.auth0.com',
     clientID: 'GNnS4UxzQOzUvM6HVBuXxXuySZVd34ej',
-    redirectUri: 'http://tournamentpageteam1bestteam.s3-website-us-east-1.amazonaws.com/callback',
+    redirectUri: 'http://tournamentpageteam1bestteam.s3-website-us-east-1.amazonaws.com/callback.html',
     responseType: 'token id_token',
     scope: 'openid profile email'
   });
