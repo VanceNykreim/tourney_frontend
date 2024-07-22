@@ -15,16 +15,46 @@
         });
 
         function handleAuthCallback() {
-            webAuth.parseHash(function(err, authResult) {
-                if (authResult && authResult.accessToken && authResult.idToken) {
-                    window.location.hash = '';
-                    localStorage.setItem('accessToken', authResult.accessToken);
-                    localStorage.setItem('idToken', authResult.idToken);
-                    window.location.href = 'index.html';
-                } else if (err) {
-                    console.log(err);
-                }
-            });
+            // Check for error parameters in the URL
+            const error = new URLSearchParams(window.location.search).get('error');
+            const errorDescription = new URLSearchParams(window.location.search).get('error_description');
+
+            if (error) {
+                document.body.innerHTML = `
+                    <header>
+                        <h1>Authentication Error</h1>
+                    </header>
+                    <main>
+                        <div id="error-message">
+                            <p>${decodeURIComponent(errorDescription || 'An unknown error occurred. Please try again.')}</p>
+                        </div>
+                        <a href="index.html">Return to Home</a>
+                    </main>
+                `;
+            } else {
+                // Continue with the Auth0 login process if no error
+                webAuth.parseHash(function(err, authResult) {
+                    if (authResult && authResult.accessToken && authResult.idToken) {
+                        window.location.hash = '';
+                        localStorage.setItem('accessToken', authResult.accessToken);
+                        localStorage.setItem('idToken', authResult.idToken);
+                        window.location.href = 'index.html';
+                    } else if (err) {
+                        console.log(err);
+                        document.body.innerHTML = `
+                            <header>
+                                <h1>Authentication Error</h1>
+                            </header>
+                            <main>
+                                <div id="error-message">
+                                    <p>${decodeURIComponent(err.description || 'An unknown error occurred. Please try again.')}</p>
+                                </div>
+                                <a href="index.html">Return to Home</a>
+                            </main>
+                        `;
+                    }
+                });
+            }
         }
 
         window.onload = handleAuthCallback;
