@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 var webAuth = new auth0.WebAuth({
   domain: 'dev-mozppcb7fxqefmto.us.auth0.com',
-  clientID: 'GNnS4UxzQOzUvM6HVBuXxXuySZVd34ej',
+  clientID: '8vvOgUksSnx1yFwkEc6SXVP1supcb6Bg',
   redirectUri: 'http://tournamentpageteam1bestteam.s3-website-us-east-1.amazonaws.com/callback.html',
   responseType: 'token id_token',
   scope: 'openid profile email'
