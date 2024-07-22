@@ -15,15 +15,11 @@ async function fetchTeams() {
             team1Select.innerHTML = '';
             team2Select.innerHTML = '';
             teams.forEach(team => {
-                const option1 = document.createElement('option');
-                option1.value = team.id;
-                option1.textContent = team.name;
-                team1Select.appendChild(option1);
-
-                const option2 = document.createElement('option');
-                option2.value = team.id;
-                option2.textContent = team.name;
-                team2Select.appendChild(option2);
+                const option = document.createElement('option');
+                option.value = team.id;
+                option.textContent = team.name;
+                team1Select.appendChild(option);
+                team2Select.appendChild(option.cloneNode(true)); // Clone the option for the second team
             });
         } else {
             alert('Failed to fetch teams.');
@@ -43,8 +39,8 @@ async function submitForm() {
         team1Id: formData.get('team1-id'),
         team2Id: formData.get('team2-id'),
         scores: [
-            { team: 'team1', set1: formData.get('team1-set1'), set2: formData.get('team1-set2'), set3: formData.get('team1-set3') || null },
-            { team: 'team2', set1: formData.get('team2-set1'), set2: formData.get('team2-set2'), set3: formData.get('team2-set3') || null },
+            { team: formData.get('team1-id'), set1: formData.get('team1-set1'), set2: formData.get('team1-set2'), set3: formData.get('team1-set3') || null },
+            { team: formData.get('team2-id'), set1: formData.get('team2-set1'), set2: formData.get('team2-set2'), set3: formData.get('team2-set3') || null },
         ],
         comments: formData.get('comments'),
     };
